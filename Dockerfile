@@ -30,7 +30,7 @@ RUN source build.sh
 
 #Build Plugin
 RUN cd .. 
-RUN echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka f6f6f61bcb5a09ea0f5a58697f495ba8db52e7de)' >> cmake/plugin_loader.cmake
+RUN echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka 471e4c3fd521e1f694e0ea540931bd9d6f065863)' >> cmake/plugin_loader.cmake
 RUN go get github.com/Shopify/sarama
 RUN source build.sh
 
