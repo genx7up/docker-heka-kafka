@@ -4,7 +4,7 @@ source build.sh
 
 #Install Kafka Plugin
 cd /opt/heka
-echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka 471e4c3fd521e1f694e0ea540931bd9d6f065863)' >> cmake/plugin_loader.cmake
+echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka acf3ac7a3d6d6dab313510f81828fca2f9375229)' >> cmake/plugin_loader.cmake
 go get github.com/Shopify/sarama
 source build.sh
 
