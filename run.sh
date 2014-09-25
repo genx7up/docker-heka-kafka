@@ -1,5 +1,6 @@
 #!/bin/bash
 
+git pull
 git checkout v0.7.1
 source build.sh
 
