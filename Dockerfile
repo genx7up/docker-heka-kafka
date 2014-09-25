@@ -20,7 +20,7 @@ RUN tar -C /usr/local -xzf /tmp/go.tar.gz
 ENV PATH $PATH:/usr/local/go/bin
 
 #Clone heka from latest source
-RUN git clone -b versions/0.7 https://github.com/mozilla-services/heka.git /opt/heka
+RUN git clone https://github.com/mozilla-services/heka.git /opt/heka
 
 # Define default run command.
 WORKDIR /opt/heka
