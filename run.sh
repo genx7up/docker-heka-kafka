@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git pull
-git checkout v0.7.1
+git checkout v0.7.2
 source build.sh
 
 #Install Kafka Plugin
