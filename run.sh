@@ -10,4 +10,4 @@ echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka ffdae590cb5f
 source build.sh
 
 #Copy the new binary to shared volume
-cp build/heka/bin/hekad /data
+cp heka/bin/hekad /data
