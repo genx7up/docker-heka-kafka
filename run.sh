@@ -6,7 +6,8 @@ source build.sh
 
 #Install Kafka Plugin
 cd /opt/heka
-echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka ffdae590cb5f611aece01d27dbe5cfd2632229bf)' >> cmake/plugin_loader.cmake
+echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka 7cbdd308fc4e7875603ee7725b33b116f0131017)' >> cmake/plugin_loader.cmake
+go get github.com/linkedin/goavro
 source build.sh
 
 #Copy the new binary to shared volume
