@@ -25,4 +25,5 @@ RUN git clone https://github.com/mozilla-services/heka.git /opt/heka
 # Define default run command.
 WORKDIR /opt/heka
 ADD run.sh /run.sh
+ADD setup_dev.sh /setup_dev.sh
 CMD ["bash", "/run.sh"]
