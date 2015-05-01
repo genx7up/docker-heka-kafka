@@ -1,0 +1,82 @@
+## SAMPLE ###
+
+#################### INPUT ###########################
+[LogstreamerInput]
+type = "LogstreamerInput"
+log_directory = "/var/log"
+file_match = 'yum.log'
+decoder = "syslog_PayloadRegexDecoder"
+
+[syslog_PayloadRegexDecoder]
+type = "PayloadRegexDecoder"
+match_regex = '^(?P<Timestamp>\w+\s+\d+\s+\d+:\d+:\d+)\s+(?P<Logger>[^:\[]*):\s+(?P<Payload>.*)'
+timestamp_layout= 'Jan _2 15:04:05'
+
+[syslog_PayloadRegexDecoder.message_fields]
+Type = "test123"
+Payload = "%Payload%"
+Logger = "%Logger%"
+is_filtered="TRUE"
+cluster = "cassandra_dev"
+hash_var = "temp8.node.dc2.nclans"
+
+[syslog_MessageFilter]
+type = "MessageFilter"
+message_matcher = 'Type == "test123"'
+filter_by = 'Payload !~ /^patch*/'
+output = 'LogOutput'
+
+
+#################### INPUT ###########################
+
+[KafkaInput_1]
+type = "KafkaInput"
+decoder = "ProtobufDecoder"
+addrs = ["temp4.node.dc2.nclans:9092"]
+id = "temp8.node.dc2.nclans-temp1"
+group = "temp8.node.dc2.nclans-temp12"
+topic = "test123"
+wait_for_election = 1000
+metadata_retries = 5
+max_open_reqests = 4
+default_fetch_size = 32768
+min_fetch_size = 1
+max_message_size = 1000000
+max_wait_time = 1
+offset_method = "Oldest"
+event_buffer_size = 1
+splitter = "KafkaSplitter"
+
+[KafkaSplitter]
+type = "NullSplitter"
+use_message_bytes = true
+
+#################### OUTPUT ###########################
+[LogOutput]
+message_matcher = 'Fields[is_filtered] == NIL'
+encoder = "RstEncoder"
+
+[RstEncoder]
+[JsonEncoder]
+
+#################### OUTPUT ###########################
+
+[KafkaOutput_1]
+message_matcher = "TRUE"
+type = "KafkaOutput"
+#cluster = "cassandra_dev"
+addrs = ["temp4.node.dc2.nclans:9092"]
+id = "temp8.node.dc2.nclans-temp"
+
+hash_variable = "Fields[hash_var]"
+
+partitioner = "Hash"
+topic_variable = "Type"
+required_acks = "WaitForLocal"
+encoder = "JsonEncoder"
+wait_for_election = 1000
+metadata_retries = 5
+max_open_reqests = 4
+compression_codec = "Snappy"
+max_buffer_time = 3000
+max_buffered_bytes = 10000
