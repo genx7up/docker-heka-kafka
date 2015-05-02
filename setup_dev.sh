@@ -7,7 +7,8 @@ echo 'cd /opt/heka && source build.sh && rm -rf /var/cache/hekad/logstreamer/Log
 echo 'rm -rf /var/cache/hekad/logstreamer/LogstreamerInput && /opt/heka/build/heka/bin/hekad --config=/opt/heka/hekad.toml' > testrun.sh
 chmod +x rebuild.sh
 chmod +x testrun.sh
-./rebuild.sh
 
 echo 'To rebuild, use ./rebuild.sh'
 echo 'To simply test run, use ./testrun.sh'
+
+./rebuild.sh
