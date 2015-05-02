@@ -17,8 +17,6 @@ Type = "test123"
 Payload = "%Payload%"
 Logger = "%Logger%"
 is_filtered="TRUE"
-cluster = "cassandra_dev"
-hash_var = "temp8.node.dc2.nclans"
 
 [syslog_MessageFilter]
 type = "MessageFilter"
@@ -64,12 +62,8 @@ encoder = "RstEncoder"
 [KafkaOutput_1]
 message_matcher = "TRUE"
 type = "KafkaOutput"
-#cluster = "cassandra_dev"
 addrs = ["temp4.node.dc2.nclans:9092"]
 id = "temp8.node.dc2.nclans-temp"
-
-hash_variable = "Fields[hash_var]"
-
 partitioner = "Hash"
 topic_variable = "Type"
 required_acks = "WaitForLocal"
@@ -80,3 +74,5 @@ max_open_reqests = 4
 compression_codec = "Snappy"
 max_buffer_time = 3000
 max_buffered_bytes = 10000
+cluster = "cassandra_dev"
+hash_variable = "temp8.node.dc2.nclans"
