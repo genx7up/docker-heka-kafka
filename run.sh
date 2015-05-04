@@ -2,6 +2,7 @@
 
 git pull
 git checkout v0.9.2
+git checkout dev plugins/kafka/kafka_output.go
 source build.sh
 
 #Install Kafka Plugin
