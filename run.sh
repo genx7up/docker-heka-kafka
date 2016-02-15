@@ -1,14 +1,16 @@
 #!/bin/bash
+set -xe
 
+cd /opt/heka
 git pull
-git checkout v0.9.2
-git checkout dev plugins/kafka/kafka_output.go
+git checkout genx7up-patch-1
+rm -rf cmake/plugin_loader.cmake
 source build.sh
 
 #Install Kafka Plugin
 cd /opt/heka
-echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka 7cbdd308fc4e7875603ee7725b33b116f0131017)' >> cmake/plugin_loader.cmake
 go get github.com/linkedin/goavro
+echo 'add_external_plugin(git https://github.com/genx7up/heka-kafka 7cbdd308fc4e7875603ee7725b33b116f0131017)' >> cmake/plugin_loader.cmake
 source build.sh
 
 #Copy the new binary to shared volume
